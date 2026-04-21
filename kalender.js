@@ -13,6 +13,21 @@ export default function handler(req, res) {
     line: selectedLine
   })
 
+  const today = new Date().toISOString().split("T")[0] // Aktuelles Datum im Format 'YYYY-MM-DD'
+
+  // Transformation der Timeline für Highlighting
+  const formattedTimeline = timeline.map(entry => {
+    const date = new Date(entry.date) // Erwarte 'date' ist in timeline enthalten
+    const weekdayShort = date.toLocaleDateString('de-DE', { weekday: 'short' }) // Wochentag (Kurzform: "Mo", "Di")
+    const dayNum = date.getDate() // Hol nur die Tageszahl
+    const isToday = entry.date === today // Vergleiche mit aktuellem Datum
+    return {
+      tag: weekdayShort,
+      datum: dayNum,
+      highlight: isToday // Markiere aktuelle Tage
+    }
+  })
+
   const response = {
     meta: {
       generatedAt: new Date().toISOString(),
@@ -21,7 +36,7 @@ export default function handler(req, res) {
       line: selectedLine
     },
     header: getHeader(),
-    timeline
+    timeline: formattedTimeline // Veränderte Timeline hinzufügen
   }
 
   res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate")
