@@ -1,4 +1,4 @@
-import { generateTimeline, getHeader } from "../lib/schedule.js"
+import { generateTimeline, getHeader } from "../schedule.js"
 
 export default function handler(req, res) {
   const { start, days, line } = req.query
