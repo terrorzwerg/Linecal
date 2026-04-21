@@ -8,6 +8,10 @@
     "timeline": [
         { "tag": "Mo", "datum": 21, "highlight": true },
         { "tag": "Di", "datum": 22, "highlight": false },
-        { "tag": "Mi", "datum": 23, "highlight": false }
+        { "tag": "Mi", "datum": 23, "highlight": false },
+        { "tag": "Do", "datum": 24, "highlight": false },
+        { "tag": "Fr", "datum": 25, "highlight": false },
+        { "tag": "Sa", "datum": 26, "highlight": false },
+        { "tag": "So", "datum": 27, "highlight": false }
     ]
 }
