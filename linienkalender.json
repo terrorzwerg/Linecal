@@ -1,17 +1,19 @@
 {
     "meta": {
         "generatedAt": "2026-04-21T12:00:00.000Z",
-        "start": "2026-04-21",
+        "start": "2026-04-20", // Woche beginnt mit Montag, egal an welchem Tag wir sind
         "days": 7,
         "line": "A"
     },
-    "timeline": [
-        { "tag": "Mo", "datum": 21, "highlight": true },
-        { "tag": "Di", "datum": 22, "highlight": false },
-        { "tag": "Mi", "datum": 23, "highlight": false },
-        { "tag": "Do", "datum": 24, "highlight": false },
-        { "tag": "Fr", "datum": 25, "highlight": false },
-        { "tag": "Sa", "datum": 26, "highlight": false },
-        { "tag": "So", "datum": 27, "highlight": false }
+    "highlights": [
+        { "tag": "Di", "datum": 21 }
+    ],
+    "normalDays": [
+        { "tag": "Mo", "datum": 20 },
+        { "tag": "Mi", "datum": 22 },
+        { "tag": "Do", "datum": 23 },
+        { "tag": "Fr", "datum": 24 },
+        { "tag": "Sa", "datum": 25 },
+        { "tag": "So", "datum": 26 }
     ]
 }
