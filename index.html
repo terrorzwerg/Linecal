@@ -11,32 +11,28 @@
             margin: 20px;
         }
         #kalender {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-width: 280px;
-        }
-        .row {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             align-items: center;
             gap: 10px;
-            color: #666;
-            font-size: 18px;
+            font-size: 22px;
+            max-width: 900px;
         }
-        .day {
+        .days {
             text-align: left;
+            color: #666;
         }
-        .dot {
+        .separator {
             text-align: center;
+            color: #666;
         }
-        .date {
+        .dates {
             text-align: right;
+            color: #666;
         }
-        .row.highlight {
+        .highlight {
             color: #d00000;
             font-weight: 700;
-            transform: scale(1.03);
         }
     </style>
 </head>
@@ -56,16 +52,18 @@
                 const kalenderElement = document.getElementById("kalender");
                 kalenderElement.innerHTML = ""; // Vorherigen Inhalt löschen
 
-                data.timeline.forEach(entry => {
-                    const row = document.createElement("div");
-                    row.className = `row${entry.highlight ? " highlight" : ""}`;
-                    row.innerHTML = `
-                        <span class="day">${entry.tag}</span>
-                        <span class="dot">•</span>
-                        <span class="date">${entry.datum}</span>
-                    `;
-                    kalenderElement.appendChild(row);
-                });
+                const days = data.timeline
+                    .map(entry => `<span class="${entry.highlight ? "highlight" : ""}">${entry.tag}</span>`)
+                    .join(" ");
+                const dates = data.timeline
+                    .map(entry => `<span class="${entry.highlight ? "highlight" : ""}">${entry.datum}</span>`)
+                    .join(" ");
+
+                kalenderElement.innerHTML = `
+                    <div class="days">${days}</div>
+                    <div class="separator">•</div>
+                    <div class="dates">${dates}</div>
+                `;
             } catch (error) {
                 console.error("Fehler:", error);
                 document.getElementById("kalender").textContent = "Fehler beim Laden des Kalenders.";
