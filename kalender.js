@@ -1,41 +1,37 @@
+import { generateTimeline } from "./schedule.js";
 
 function getMonday(date) {
-    const day = date.getDay(); // Wochentag (0 = Sonntag, 1 = Montag, ...)
-    const diff = day === 0 ? -6 : 1 - day; // Montag als Referenz (bei Sonntag -6 Tage)
-    const monday = new Date(date);
-    monday.setDate(date.getDate() + diff);
-    return monday; // Gibt den Montag der aktuellen Woche zurück
+  const day = date.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  const monday = new Date(date);
+  monday.setDate(date.getDate() + diff);
+  return monday;
 }
 
-const startDate = getMonday(new Date()); // Woche mit Montag starten
-const today = new Date().toISOString().split("T")[0]; // Aktuelles Datum
-
-// Generiere die Woche (Montag - Sonntag)
-const timeline = generateTimeline({
+export default function handler(req, res) {
+  const startDate = getMonday(new Date());
+  const line = String(req.query?.line || "A").toUpperCase();
+  const timeline = generateTimeline({
     start: startDate,
     days: 7,
     line
-});
+  });
 
-// Unterscheide zwischen Highlights (heutiger Tag) und normalen Tagen
-const highlights = timeline.filter(entry => entry.date === today);
-const normalDays = timeline.filter(entry => entry.date !== today);
-
-// Antwortstruktur anpassen
-const response = {
+  const response = {
     meta: {
-        generatedAt: new Date().toISOString(),
-        start: startDate.toISOString().split("T")[0],
-        days: 7,
-        line
+      generatedAt: new Date().toISOString(),
+      start: startDate.toISOString().split("T")[0],
+      days: 7,
+      line
     },
-    highlights: highlights.map(entry => ({
-        tag: entry.day,
-        datum: entry.dayNumber
-    })),
-    normalDays: normalDays.map(entry => ({
-        tag: entry.day,
-        datum: entry.dayNumber
+    timeline: timeline.map((entry) => ({
+      tag: entry.day,
+      datum: entry.dayNumber,
+      date: entry.date,
+      shift: entry.shift,
+      highlight: entry.date === new Date().toISOString().split("T")[0]
     }))
-};
-res.status(200).json(response);
+  };
+
+  res.status(200).json(response);
+}

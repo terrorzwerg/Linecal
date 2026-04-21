@@ -44,9 +44,8 @@
 
                 data.timeline.forEach(entry => {
                     const item = document.createElement("div");
-                    // Heutige Tage hervorheben, andere dimmen
                     item.className = entry.highlight ? "highlight" : "dimmed";
-                    item.textContent = `${entry.tag}: ${entry.datum}`;
+                    item.textContent = `${entry.tag}: ${entry.datum} (${entry.shift})`;
                     kalenderElement.appendChild(item);
                 });
             } catch (error) {
