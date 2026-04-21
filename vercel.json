@@ -1,0 +1,5 @@
+{
+  "routes": [
+    { "src": "/Linecal/kalender", "dest": "/Linecal/kalender.js" }
+  ]
+}
