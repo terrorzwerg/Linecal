@@ -1,0 +1,13 @@
+{
+    "meta": {
+        "generatedAt": "2026-04-21T12:00:00.000Z",
+        "start": "2026-04-21",
+        "days": 7,
+        "line": "A"
+    },
+    "timeline": [
+        { "tag": "Mo", "datum": 21, "highlight": true },
+        { "tag": "Di", "datum": 22, "highlight": false },
+        { "tag": "Mi", "datum": 23, "highlight": false }
+    ]
+}
