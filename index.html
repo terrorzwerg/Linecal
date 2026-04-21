@@ -1,12 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linienkalender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        #kalender {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: red;
+        }
+        .dimmed {
+            color: gray;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Linienkalender</h1>
-    <p>This is a simple setup for GitHub Pages.</p>
+    <h1>Linienkalender</h1>
+    <div id="kalender">Wird geladen...</div>
+    <script>
+        // URL zu deiner JSON-Datei bei GitHub Pages
+        const jsonUrl = "https://terrorzwerg.github.io/Linecal/linienkalender.json";
+
+        async function loadKalender() {
+            try {
+                const response = await fetch(jsonUrl);
+                if (!response.ok) throw new Error("Fehler beim Laden der JSON-Daten.");
+                const data = await response.json();
+
+                const kalenderElement = document.getElementById("kalender");
+                kalenderElement.innerHTML = ""; // Vorherigen Inhalt löschen
+
+                data.timeline.forEach(entry => {
+                    const item = document.createElement("div");
+                    // Heutige Tage hervorheben, andere dimmen
+                    item.className = entry.highlight ? "highlight" : "dimmed";
+                    item.textContent = `${entry.tag}: ${entry.datum}`;
+                    kalenderElement.appendChild(item);
+                });
+            } catch (error) {
+                console.error("Fehler:", error);
+                document.getElementById("kalender").textContent = "Fehler beim Laden des Kalenders.";
+            }
+        }
+
+        // Kalender laden
+        loadKalender();
+    </script>
 </body>
 </html>
