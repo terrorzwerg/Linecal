@@ -1,7 +1,7 @@
 const rotation = ["A", "B", "C", "D", "OFF"]
 const baseDate = new Date("2026-01-01")
 
-const daysShort = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+const daysShort = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"]
 
 export function getShiftForDate(date) {
   const diffDays = Math.floor(

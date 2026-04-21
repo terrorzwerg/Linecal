@@ -1,17 +1,2 @@
-{
-    "meta": {
-        "generatedAt": "2026-04-21T12:00:00.000Z",
-        "start": "2026-04-20",
-        "days": 7,
-        "line": "A"
-    },
-    "timeline": [
-        { "tag": "Mon", "datum": 20, "date": "2026-04-20", "shift": "A", "highlight": false },
-        { "tag": "Tue", "datum": 21, "date": "2026-04-21", "shift": "B", "highlight": true },
-        { "tag": "Wed", "datum": 22, "date": "2026-04-22", "shift": "C", "highlight": false },
-        { "tag": "Thu", "datum": 23, "date": "2026-04-23", "shift": "D", "highlight": false },
-        { "tag": "Fri", "datum": 24, "date": "2026-04-24", "shift": "OFF", "highlight": false },
-        { "tag": "Sat", "datum": 25, "date": "2026-04-25", "shift": "A", "highlight": false },
-        { "tag": "Sun", "datum": 26, "date": "2026-04-26", "shift": "B", "highlight": false }
-    ]
-}
+{"meta":{"generatedAt":"2026-04-21T12:00:00.000Z","start":"2026-04-20","days":7,"line":"A"},
+"timeline":[{"tag":"Mo","datum":20,"date":"2026-04-20","shift":"A","highlight":false},{"tag":"Di","datum":21,"date":"2026-04-21","shift":"B","highlight":true},{"tag":"Mi","datum":22,"date":"2026-04-22","shift":"C","highlight":false},{"tag":"Do","datum":23,"date":"2026-04-23","shift":"D","highlight":false},{"tag":"Fr","datum":24,"date":"2026-04-24","shift":"OFF","highlight":false},{"tag":"Sa","datum":25,"date":"2026-04-25","shift":"A","highlight":false},{"tag":"So","datum":26,"date":"2026-04-26","shift":"B","highlight":false}]}

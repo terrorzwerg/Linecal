@@ -11,18 +11,32 @@
             margin: 20px;
         }
         #kalender {
-    display: flex;
-    flex-direction: row; /* Ändert die Richtung von Spalte zu Zeile */
-    gap: 15px; /* Fügt Abstände zwischen den Tagen ein */
-    justify-content: center; /* Zentriert die Anzeige */
-}
-
-        .highlight {
-            font-weight: bold;
-            color: red;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 280px;
         }
-        .dimmed {
-            color: gray;
+        .row {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 10px;
+            color: #666;
+            font-size: 18px;
+        }
+        .day {
+            text-align: left;
+        }
+        .dot {
+            text-align: center;
+        }
+        .date {
+            text-align: right;
+        }
+        .row.highlight {
+            color: #d00000;
+            font-weight: 700;
+            transform: scale(1.03);
         }
     </style>
 </head>
@@ -43,10 +57,14 @@
                 kalenderElement.innerHTML = ""; // Vorherigen Inhalt löschen
 
                 data.timeline.forEach(entry => {
-                    const item = document.createElement("div");
-                    item.className = entry.highlight ? "highlight" : "dimmed";
-                    item.textContent = `${entry.tag}: ${entry.datum} (${entry.shift})`;
-                    kalenderElement.appendChild(item);
+                    const row = document.createElement("div");
+                    row.className = `row${entry.highlight ? " highlight" : ""}`;
+                    row.innerHTML = `
+                        <span class="day">${entry.tag}</span>
+                        <span class="dot">•</span>
+                        <span class="date">${entry.datum}</span>
+                    `;
+                    kalenderElement.appendChild(row);
                 });
             } catch (error) {
                 console.error("Fehler:", error);
